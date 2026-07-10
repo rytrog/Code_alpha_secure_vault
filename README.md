@@ -6,6 +6,9 @@
 
 **SentinelX** is an advanced, enterprise-grade cloud secure data vault and SQL injection defense platform designed to protect sensitive information while monitoring real-time database threats. The application is built using a modern, unified tech stack featuring a Python FastAPI backend, a clean Google Cloud Console-inspired HTML/CSS/JS frontend, and a secure SQLite database.
 
+> [!IMPORTANT]
+> **Administrative Oversight & Threat Operations Center:** Unlike typical credential vaults that are solely for personal/user storage, SentinelX is designed as a fully-monitored, administrator-controlled security platform. System administrators have complete system authority to oversee user registrations, manage/promote/demote user roles, disable/enable accounts, override configurations, track real-time SQL injection threats, and chat with a Virtual CISO assistant.
+
 At its core, SentinelX acts as a virtual Security Operations Center (SOC). It utilizes custom request-filtering middleware that intercepts incoming transactions, checks for dangerous SQL payloads (such as quote-escaping, comment termination, and time-based delays), blocks malicious actors, and computes a dynamic security score. Security events are instantly logged and aggregated on an administrative dashboard, which auto-refreshes every three seconds for real-time threat telemetry.
 
 Furthermore, SentinelX includes a cryptographically secure vault that encrypts user credentials locally in memory using AES-256 (CBC mode) before database persistence. Admins can view, search, and decrypt credentials, including secure image uploads encoded in Base64.
@@ -59,19 +62,19 @@ Standard users have direct access to their private, secure credential vault wher
 
 ---
 
-## 👑 System Administrator Guide
+## 👑 System Administrator Guide & Controls
 
-Administrators have full oversight of system traffic, database stats, user roles, security settings, and AI threat reports.
+SentinelX operates under administrative control, ensuring the system administrator has complete authority over the entire platform. Standard user vault operations are supervised, and system integrity is continually monitored.
 
 ### Admin Credentials
 - **Username**: `admin`
 - **Password**: `Admin@SentinelX2026`
 
-### Admin Features
-- **Live Security Dashboard**: View total traffic, blocked injection requests, failed authentication attempts, and real-time security scores. Logs refresh automatically every 3 seconds.
-- **AI Security Analyst (Virtual CISO)**: Chat with the security assistant to ask about recent logs or general vulnerability patching advice.
-- **Intrusion Logs & AI Explainer**: Inspect blocked payloads and click **Explain** to get an AI breakdown of how the exploit works and how to mitigate it.
-- **User Management**: Promote or demote user accounts, disable compromised accounts, and reset user passwords directly through the GUI.
+### Administrative Capabilities & Override Controls
+- **Identity Control Panel**: Full access to promote standard users to administrative status, demote admins, reset user passwords, disable compromised accounts, or permanently delete accounts (which cascades to purge their vault items).
+- **Live Security Operations Center**: Track total traffic volume, inspect blocked intrusion vectors, monitor failed/successful authentication logs, and read real-time platform security scores updated every 3 seconds.
+- **Virtual CISO threat Analyst**: Engage with the AI Security Assistant powered by Groq (Llama-3) or Gemini, asking direct questions about security logs, intrusion history, or general recommendations.
+- **Intrusion Logs & AI Explainer**: Analyze SQL injection payloads, and get detailed AI-generated threat explanations and remediation checklists.
 
 ---
 

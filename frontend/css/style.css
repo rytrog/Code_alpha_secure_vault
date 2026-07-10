@@ -768,6 +768,11 @@ body {
         align-items: center;
         gap: 12px;
         padding-bottom: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .topbar h2 {
+        font-size: 18px;
     }
     
     .topbar-right .live-indicator {
@@ -776,14 +781,34 @@ body {
 }
 
 @media (max-width: 480px) {
+    .card {
+        padding: 16px;
+    }
+    
+    .main-content {
+        padding: 12px;
+    }
+    
     .topbar {
         flex-wrap: wrap;
     }
+    
+    .topbar h2 {
+        font-size: 16px;
+        max-width: 100%;
+        word-break: break-all;
+    }
+    
     .user-badge {
         padding: 4px;
     }
+    
     .user-info {
         display: none; /* Hide username text in badge to fit screen */
+    }
+    
+    .auth-card {
+        padding: 24px 20px;
     }
 }
 
@@ -791,7 +816,7 @@ body {
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .flex { display: flex; }
-.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
 .gap-8 { gap: 8px; }
 .gap-16 { gap: 16px; }
 .mt-16 { margin-top: 16px; }
@@ -800,3 +825,27 @@ body {
 .mb-24 { margin-bottom: 24px; }
 .hidden { display: none !important; }
 .mono { font-family: 'JetBrains Mono', monospace; }
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 16px;
+}
+
+.chat-bubble-content {
+    max-width: 70%;
+}
+
+@media (max-width: 768px) {
+    .chat-bubble-content {
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-bubble-content {
+        max-width: 90%;
+    }
+}
+

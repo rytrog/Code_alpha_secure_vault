@@ -107,3 +107,10 @@
     font-weight: 500;
     font-family: 'JetBrains Mono', monospace;
 }
+
+@media (max-width: 900px) {
+    .security-overview {
+        grid-template-columns: 1fr;
+    }
+}
+

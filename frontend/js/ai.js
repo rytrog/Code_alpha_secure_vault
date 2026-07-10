@@ -45,7 +45,7 @@ function chatBubble(role, content, timestamp) {
             <div style="width:36px;height:36px;border-radius:50%;background:${isUser ? 'var(--accent-blue)' : 'var(--accent-purple)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;color:white;flex-shrink:0">
                 ${isUser ? 'U' : 'AI'}
             </div>
-            <div style="max-width:70%;padding:14px 18px;border-radius:${isUser ? '16px 16px 4px 16px' : '16px 16px 16px 4px'};background:${isUser ? 'rgba(26,115,232,0.1)' : 'var(--bg-card)'};border:1px solid var(--border-color)">
+            <div class="chat-bubble-content" style="padding:14px 18px;border-radius:${isUser ? '16px 16px 4px 16px' : '16px 16px 16px 4px'};background:${isUser ? 'rgba(26,115,232,0.1)' : 'var(--bg-card)'};border:1px solid var(--border-color)">
                 <div style="font-size:14px;line-height:1.6;color:var(--text-primary)">${isUser ? escapeHtml(content) : formatMarkdown(content)}</div>
                 <span style="font-size:10px;color:var(--text-muted);margin-top:6px;display:block">${timeAgo(timestamp)}</span>
             </div>
