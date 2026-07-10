@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SentinelX Secure Vault - AES-256 encrypted data storage">
+    <title>SentinelX - Secure Vault</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vault.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar"></aside>
+        <main class="main-content">
+            <div id="navbar"></div>
+
+            <!-- Add New Item -->
+            <div class="card vault-add-section animate-fade-in-up">
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:16px">Add Secure Record</h3>
+                <form id="vaultForm">
+                    <div class="vault-form-row">
+                        <div class="form-group">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-input" id="vaultTitle" placeholder="e.g. AWS Access Key" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select class="form-input form-select" id="vaultCategory">
+                                <option value="note">Secure Note</option>
+                                <option value="password">Password</option>
+                                <option value="api_key">API Key</option>
+                                <option value="document">Document</option>
+                                <option value="banking">Banking</option>
+                                <option value="credential">Credential</option>
+                                <option value="image">Secure Image</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="textDataGroup">
+                        <label class="form-label">Sensitive Data (will be AES-256 encrypted)</label>
+                        <textarea class="form-input" id="vaultData" rows="3" placeholder="Enter your sensitive data..." required style="resize:vertical"></textarea>
+                    </div>
+                    <div class="form-group" id="fileDataGroup" style="display:none">
+                        <label class="form-label">Secure Image File (will be AES-256 encrypted, max 2MB)</label>
+                        <input type="file" class="form-input" id="vaultFile" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Encrypt & Store</button>
+                </form>
+            </div>
+
+            <!-- Vault Items -->
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:16px">Your Encrypted Vault</h3>
+            <div class="vault-grid" id="vaultGrid">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div id="footer" class="mt-24"></div>
+        </main>
+    </div>
+
+    <div class="toast-container"></div>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/vault.js"></script>
+    <script>
+        loadComponent('sidebar', 'sidebar.html').then(() => {
+            const el = document.getElementById('nav-vault');
+            if (el) el.classList.add('active');
+        });
+        loadComponent('navbar', 'navbar.html').then(() => {
+            const pt = document.getElementById('pageTitle');
+            if (pt) pt.innerHTML = 'Secure Vault';
+        });
+        loadComponent('footer', 'footer.html');
+    </script>
+</body>
+</html>

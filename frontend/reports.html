@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SentinelX AI Security Reports - Generate and view AI-powered security reports">
+    <title>SentinelX - Security Reports</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar"></aside>
+        <main class="main-content">
+            <div id="navbar"></div>
+
+            <div class="flex-between mb-24">
+                <h3 style="font-size:16px;font-weight:600">AI Security Reports</h3>
+                <button class="btn btn-primary" id="generateReportBtn" onclick="generateReport()">Generate AI Report</button>
+            </div>
+
+            <div id="reportsList">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div id="footer" class="mt-24"></div>
+        </main>
+    </div>
+
+    <!-- Report View Modal -->
+    <div class="modal-overlay" id="reportModal">
+        <div class="modal" style="max-width:700px">
+            <div class="modal-header">
+                <h3>Security Report</h3>
+                <div class="flex gap-8">
+                    <button class="btn btn-outline btn-sm" onclick="exportReport()">Export</button>
+                    <button class="modal-close" onclick="closeReportModal()">✕</button>
+                </div>
+            </div>
+            <div id="reportModalContent"></div>
+        </div>
+    </div>
+
+    <div class="toast-container"></div>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/reports.js"></script>
+    <script>
+        loadComponent('sidebar', 'sidebar.html').then(() => {
+            const el = document.getElementById('nav-reports');
+            if (el) el.classList.add('active');
+        });
+        loadComponent('navbar', 'navbar.html').then(() => {
+            const pt = document.getElementById('pageTitle');
+            if (pt) pt.innerHTML = 'Reports';
+        });
+        loadComponent('footer', 'footer.html');
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SentinelX Security Dashboard - Real-time attack analysis, threat scores, and analytics">
+    <title>SentinelX - Security Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar"></aside>
+        <main class="main-content">
+            <div id="navbar"></div>
+
+            <!-- Security Overview Section -->
+            <div class="security-overview animate-fade-in-up">
+                <!-- Stats Grid (Inline to prevent component loading race conditions) -->
+                <div class="stats-grid">
+                    <!-- Total Users -->
+                    <div class="stat-card">
+                        <div class="stat-icon blue">USERS</div>
+                        <div class="stat-value" id="totalUsers">-</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <!-- Encrypted Vault Items -->
+                    <div class="stat-card">
+                        <div class="stat-icon green">VAULT</div>
+                        <div class="stat-value" id="encryptedRecords">-</div>
+                        <div class="stat-label">Encrypted Records</div>
+                    </div>
+                    <!-- Total Inspected Traffic -->
+                    <div class="stat-card">
+                        <div class="stat-icon purple">TRAFFIC</div>
+                        <div class="stat-value" id="todayRequests">-</div>
+                        <div class="stat-label">Inspected Requests</div>
+                    </div>
+                    <!-- Blocked Requests -->
+                    <div class="stat-card">
+                        <div class="stat-icon red">BLOCKED</div>
+                        <div class="stat-value" id="blockedRequests">-</div>
+                        <div class="stat-label">Blocked Attacks</div>
+                    </div>
+                    <!-- Successful Logins -->
+                    <div class="stat-card">
+                        <div class="stat-icon green">SUCCESS</div>
+                        <div class="stat-value" id="successfulLogins">-</div>
+                        <div class="stat-label">Successful Logins</div>
+                    </div>
+                    <!-- Failed Logins -->
+                    <div class="stat-card">
+                        <div class="stat-icon red">FAILURE</div>
+                        <div class="stat-value" id="failedLogins">-</div>
+                        <div class="stat-label">Failed Logins</div>
+                    </div>
+                </div>
+
+                <!-- Security Gauge (Right panel of Overview Grid) -->
+                <div class="score-card">
+                    <h3>Security Score</h3>
+                    <div class="security-gauge" id="securityGauge">
+                        <div class="gauge-value" id="gaugeValue">-</div>
+                    </div>
+                    <div class="threat-indicator">
+                        <div class="threat-dot" id="threatDot"></div>
+                        <div class="threat-text" id="threatText">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Charts Section -->
+            <div class="charts-grid animate-fade-in-up" style="animation-delay: 0.1s">
+                <div class="chart-card">
+                    <h3>Attack Types Distribution</h3>
+                    <div style="position: relative; height: 220px;">
+                        <canvas id="attackTypesChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Daily Attack Vector Intensity</h3>
+                    <div style="position: relative; height: 220px;">
+                        <canvas id="dailyAttacksChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Intrusion Severity Spread</h3>
+                    <div style="position: relative; height: 220px;">
+                        <canvas id="severityChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Authentication Logs (Success vs Failure)</h3>
+                    <div style="position: relative; height: 220px;">
+                        <canvas id="loginChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Threat Logs & Auth Log Feed -->
+            <div class="charts-grid animate-fade-in-up" style="animation-delay: 0.2s">
+                <div class="chart-card">
+                    <h3>Live Threat Log Feed</h3>
+                    <div class="attack-feed" id="attackFeed">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Recent Authentication Events</h3>
+                    <div class="attack-feed" id="loginFeed">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="footer" class="mt-24"></div>
+        </main>
+    </div>
+
+    <div class="toast-container"></div>
+
+    <!-- Chart.js CDN Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- App scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        loadComponent('sidebar', 'sidebar.html').then(() => {
+            const el = document.getElementById('nav-dashboard');
+            if (el) el.classList.add('active');
+        });
+        loadComponent('navbar', 'navbar.html').then(() => {
+            const pt = document.getElementById('pageTitle');
+            if (pt) pt.innerHTML = 'Live Security Dashboard';
+        });
+        loadComponent('footer', 'footer.html');
+    </script>
+</body>
+</html>

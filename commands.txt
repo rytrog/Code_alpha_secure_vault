@@ -1,0 +1,77 @@
+======================================================================
+                  SentinelX - Command Reference
+======================================================================
+
+Choose either Option 1 (Local execution) or Option 2 (Docker execution).
+
+----------------------------------------------------------------------
+Option 1: Run Locally (Recommended for Development)
+----------------------------------------------------------------------
+
+Make sure you have installed the requirements first:
+  cd backend
+  pip install -r requirements.txt
+
+Then open TWO separate terminal windows to run both services:
+
+Terminal 1 (Backend API Service):
+  cd backend
+  uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+Terminal 2 (Frontend Client Service):
+  cd frontend
+  python -m http.server 5500
+
+Accessing the App:
+  Frontend Web Panel: http://127.0.0.1:5500
+  Backend API Docs:   http://127.0.0.1:8000/docs
+
+
+----------------------------------------------------------------------
+Option 2: Run with Docker Compose (Single Command)
+----------------------------------------------------------------------
+
+Make sure you have Docker Desktop installed, then run from the root directory:
+
+Start both services:
+  docker-compose up --build -d
+
+Stop both services:
+  docker-compose down
+
+Accessing the App:
+  Frontend Web Panel: http://localhost:5500
+  Backend API Docs:   http://localhost:8000/docs
+
+
+----------------------------------------------------------------------
+Default Credentials (Year 2026 Config)
+----------------------------------------------------------------------
+
+Admin Role:
+  Username: admin
+  Password: Admin@SentinelX2026
+
+User Role:
+  Username: demo_user
+  Password: Demo@2026!
+
+----------------------------------------------------------------------
+Option 3: Deploy to Render (Cloud Hosting)
+----------------------------------------------------------------------
+
+SentinelX is configured to serve the frontend directly from the backend, so you only need to deploy a single Web Service on Render!
+
+1. Create a new "Web Service" on Render and connect your GitHub repository.
+2. Configure the settings:
+   - Root Directory: (leave blank/root)
+   - Runtime: Python
+   - Build Command: cd backend && pip install -r requirements.txt
+   - Start Command: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+3. In the "Environment" tab, add your environment variables:
+   - GROQ_API_KEY: (your Groq Cloud API key)
+   - JWT_SECRET_KEY: (a secure random string)
+   - AES_ENCRYPTION_KEY: (32-byte hex key)
+
+Once deployed, Render will host both the backend API and the frontend user interface under a single URL!
+======================================================================

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management - SentinelX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .action-btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: var(--radius-xs);
+            cursor: pointer;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-input);
+        }
+        .action-btn.btn-danger:hover {
+            background: var(--accent-red);
+            color: white;
+            border-color: var(--accent-red);
+        }
+        .action-btn.btn-primary:hover {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Component -->
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <div class="main-content">
+            <!-- Navbar Component -->
+            <header class="navbar" id="navbar"></header>
+
+            <main class="page-body">
+                <!-- User stats summary -->
+                <div class="card animate-fade-in-up" style="margin-bottom: 24px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                        <div>
+                            <h2 style="font-family:'Outfit'; font-size:22px; color:var(--text-primary); margin-bottom:4px;">Platform Identity Management</h2>
+                            <p style="color:var(--text-muted); font-size:14px;">Manage system user accounts, promote/demote administrative permissions, and configure access statuses.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Data Grid -->
+                <div class="card animate-fade-in-up">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Created At</th>
+                                    <th style="text-align:right">Access Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody">
+                                <tr>
+                                    <td colspan="7" style="text-align:center; padding:40px; color:var(--text-muted);">
+                                        <span class="loading-spinner" style="display:inline-block;"></span>
+                                        <p style="margin-top:12px;">Loading user database records...</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer Component -->
+            <footer class="footer" id="footer"></footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/users.js"></script>
+    <script>
+        loadComponent('sidebar', 'sidebar.html').then(() => {
+            const el = document.getElementById('nav-users');
+            if (el) el.classList.add('active');
+        });
+        loadComponent('navbar', 'navbar.html').then(() => {
+            const pt = document.getElementById('pageTitle');
+            if (pt) pt.innerHTML = 'Users Management';
+        });
+        loadComponent('footer', 'footer.html');
+        
+        // Initialize page logic
+        document.addEventListener('DOMContentLoaded', initUsersPage);
+    </script>
+</body>
+</html>

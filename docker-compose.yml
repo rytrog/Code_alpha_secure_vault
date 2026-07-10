@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: sentinelx-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./database:/app/database
+      - ./backend/app/logs:/app/app/logs
+      - ./backend/app/exports:/app/app/exports
+    environment:
+      - DATABASE_URL=sqlite:///../../database/sentinelx.db
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    image: nginx:alpine
+    container_name: sentinelx-frontend
+    ports:
+      - "5500:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+    restart: unless-stopped

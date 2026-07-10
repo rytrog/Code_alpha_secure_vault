@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SentinelX Attack Logs - SQL Injection detection and threat analysis">
+    <title>SentinelX - Attack Logs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar"></aside>
+        <main class="main-content">
+            <div id="navbar"></div>
+
+            <!-- Search & Filter -->
+            <div class="card mb-24 animate-fade-in-up">
+                <div class="flex-between gap-16" style="flex-wrap:wrap">
+                    <div style="flex:1;min-width:200px">
+                        <input type="text" class="form-input" id="attackSearch" placeholder="Search by IP, endpoint, payload...">
+                    </div>
+                    <div>
+                        <select class="form-input form-select" id="severityFilter" style="width:180px">
+                            <option value="">All Severities</option>
+                            <option value="safe">Safe</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attack Table -->
+            <div class="card">
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:16px">Attack Logs</h3>
+                <div style="overflow-x:auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>IP Address</th>
+                                <th>Endpoint</th>
+                                <th>Score</th>
+                                <th>Type</th>
+                                <th>Severity</th>
+                                <th>Action</th>
+                                <th>AI</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attackTableBody">
+                            <tr><td colspan="8" class="text-center"><div class="loading-spinner"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="footer" class="mt-24"></div>
+        </main>
+    </div>
+
+    <!-- AI Explanation Modal -->
+    <div class="modal-overlay" id="aiModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>AI Threat Analysis</h3>
+                <button class="modal-close" onclick="closeAiModal()">✕</button>
+            </div>
+            <div id="aiModalContent"></div>
+        </div>
+    </div>
+
+    <div class="toast-container"></div>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/attacks.js"></script>
+    <script>
+        loadComponent('sidebar', 'sidebar.html').then(() => {
+            const el = document.getElementById('nav-attacks');
+            if (el) el.classList.add('active');
+        });
+        loadComponent('navbar', 'navbar.html').then(() => {
+            const pt = document.getElementById('pageTitle');
+            if (pt) pt.innerHTML = 'Attack Logs';
+        });
+        loadComponent('footer', 'footer.html');
+    </script>
+</body>
+</html>

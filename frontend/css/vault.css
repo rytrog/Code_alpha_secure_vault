@@ -1,0 +1,100 @@
+/* ── Vault Specific ──────────────────── */
+.vault-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.vault-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.vault-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.vault-item.note::before { background: var(--accent-blue); }
+.vault-item.password::before { background: var(--accent-red); }
+.vault-item.api_key::before { background: var(--accent-purple); }
+.vault-item.document::before { background: var(--accent-cyan); }
+.vault-item.banking::before { background: var(--accent-orange); }
+.vault-item.credential::before { background: var(--accent-green); }
+
+.vault-item:hover {
+    box-shadow: var(--shadow-card);
+}
+
+.vault-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.vault-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+
+.vault-item-category {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.vault-item-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    word-break: break-all;
+    position: relative;
+}
+
+.vault-item-data.masked {
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.vault-item-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.vault-item-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+/* ── Vault Add Form ──────────────────── */
+.vault-add-section {
+    margin-bottom: 28px;
+}
+
+.vault-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}

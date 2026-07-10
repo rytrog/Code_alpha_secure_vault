@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SentinelX - AI-Powered Cloud Secure Data Vault & SQL Injection Defense Platform. Landing page.">
+    <title>SentinelX - AI-Powered Security Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .landing { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; position: relative; z-index: 1; }
+        .landing-title { font-size: 56px; font-weight: 700; color: var(--accent-blue); margin-bottom: 16px; animation: fadeInUp 0.4s ease-out; }
+        .landing-sub { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin-bottom: 40px; animation: fadeInUp 0.4s ease-out 0.05s both; }
+        .landing-logo { font-size: 36px; font-weight: bold; background: var(--accent-blue); color: white; width: 80px; height: 80px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: var(--shadow-card); animation: fadeInUp 0.4s ease-out; }
+        .landing-btns { display: flex; gap: 16px; animation: fadeInUp 0.4s ease-out 0.1s both; }
+        .landing-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 900px; margin-top: 60px; animation: fadeInUp 0.4s ease-out 0.15s both; }
+        .landing-feature { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; text-align: left; transition: var(--transition); }
+        .landing-feature:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); border-color: var(--accent-blue); }
+        .landing-feature h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; color: var(--text-primary); }
+        .landing-feature p { font-size: 13px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="landing">
+        <div class="landing-logo">SX</div>
+        <h1 class="landing-title">SentinelX</h1>
+        <p class="landing-sub">AI-Powered Cloud Secure Data Vault & SQL Injection Defense Platform. Enterprise-grade security for your data.</p>
+        <div class="landing-btns">
+            <a href="login.html" class="btn btn-primary btn-lg">Sign In</a>
+            <a href="register.html" class="btn btn-outline btn-lg">Create Account</a>
+        </div>
+        <div class="landing-features">
+            <div class="landing-feature">
+                <h3>AES-256 Vault</h3>
+                <p>Store passwords, API keys, and secrets with military-grade encryption.</p>
+            </div>
+            <div class="landing-feature">
+                <h3>SQL Injection Defense</h3>
+                <p>Real-time detection engine scans every request for malicious payloads.</p>
+            </div>
+            <div class="landing-feature">
+                <h3>AI Security Analyst</h3>
+                <p>Gemini-powered threat analysis, reports, and intelligent recommendations.</p>
+            </div>
+            <div class="landing-feature">
+                <h3>Live Dashboard</h3>
+                <p>Real-time security metrics, charts, attack feeds, and system health.</p>
+            </div>
+            <div class="landing-feature">
+                <h3>Threat Scoring</h3>
+                <p>0-100 threat scoring with automatic severity classification.</p>
+            </div>
+            <div class="landing-feature">
+                <h3>Role-Based Access</h3>
+                <p>Admin and user roles with granular permission controls.</p>
+            </div>
+        </div>
+    </div>
+    <div class="toast-container"></div>
+</body>
+</html>
